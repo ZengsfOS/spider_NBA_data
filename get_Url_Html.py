@@ -2,9 +2,10 @@ import requests
 import re
 
 
-def get_html_use_data():
+def get_html_use_data(x, url_end):
     '''获取每个赛季中最好的球员'''
-    url = "http://www.stat-nba.com/award/item14pr4.html"
+#    url = "http://www.stat-nba.com/award/item14pr4.html"
+    url = "http://www.stat-nba.com"+ url_end
     response = requests.get(url)
     html = response.text.encode("ISO-8859-1").decode("UTF-8")
 

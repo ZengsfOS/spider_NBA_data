@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 import requests
 import re
+from get_Url_Html import get_html_use_data
 
 def get_Data():
     '''获取html文本'''
@@ -43,6 +44,18 @@ def tidy_data(data):
     print(d1)
     return d, d1
 
+def thread_get_data(visit_url):
+    '''利用线程，获取数据'''
+    all_data = []
+    for x in visit_url:
+        url_end =  visit_url["{}".format(x)]
+        print(x)
+        print(visit_url["{}".format(x)])
+        datas = get_html_use_data(x,url_end )
+        all_data.append(datas)
+    return all_data
+
+
 def main():
     html = get_Data()
     print(html)
@@ -50,9 +63,8 @@ def main():
     print(data)
     visit_url, visit_name = tidy_data(data)
     print(visit_url, visit_name)
-    for i in visit_url:
-        print(i)
-        print(visit_url["{}".format(i)])
+    datas = thread_get_data(visit_url)
+    print(datas)
 
 if __name__ == "__main__":
     main()
