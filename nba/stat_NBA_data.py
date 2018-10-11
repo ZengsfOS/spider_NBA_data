@@ -1,20 +1,8 @@
 # -*- coding:utf-8 -*-
 import requests
 import re
-from get_Url_Html import get_html_use_data
-
-def get_Data():
-    '''获取html文本'''
-    try:
-        url = "http://www.stat-nba.com/award/item14.html"
-        response = requests.get(url)
-        print(response)
-        print(response.encoding)
-        if response.status_code == 200:
-            return response.text.encode("ISO-8859-1").decode("utf-8")
-        return None
-    except:
-        return None
+from nba.get_Url_Html import get_html_use_data
+from getRequestData import get_Data
 
 def get_Data_Parse(html):
     '''将html中所要的数据提取出来'''
@@ -49,7 +37,7 @@ def thread_get_data(visit_url):
     all_data = []
     for x in visit_url:
         d={}
-        url_end =  visit_url["{}".format(x)]
+        url_end = "http://www.stat-nba.com" + visit_url["{}".format(x)]
         print(x)
         print(visit_url["{}".format(x)])
         datas = get_html_use_data(url_end )
@@ -59,7 +47,8 @@ def thread_get_data(visit_url):
 
 
 def main():
-    html = get_Data()
+    url = "http://www.stat-nba.com/award/item14.html"
+    html = get_Data(url)
     print(html)
     data = get_Data_Parse(html)
     print(data)

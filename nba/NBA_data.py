@@ -1,7 +1,6 @@
 import requests
 import itertools
-import time
-from headers import header
+from nba.headers import header
 import json
 
 #通过ulr来获取到数据

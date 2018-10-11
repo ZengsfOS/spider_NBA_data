@@ -1,13 +1,14 @@
 import requests
 import re
-
+from getRequestData import get_Data
 
 def get_html_use_data(url_end):
     '''获取每个赛季中最好的球员'''
 #    url = "http://www.stat-nba.com/award/item14pr4.html"
-    url = "http://www.stat-nba.com"+ url_end
-    response = requests.get(url)
-    html = response.text.encode("ISO-8859-1").decode("UTF-8")
+#     url = "http://www.stat-nba.com"+ url_end
+#     response = requests.get(url)
+#     html = response.text.encode("ISO-8859-1").decode("UTF-8")
+    html = get_Data(url_end)
 
     index = ['赛季', '球员', '联盟', '出场', '首发', '时间', '投篮', '命中', '出手', '三分',
              '三分命中', '三分出手', '罚球', '罚球命中', '罚球出手',
