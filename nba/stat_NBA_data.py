@@ -5,7 +5,7 @@ from nba.get_Url_Html import get_html_use_data
 from getRequestData import get_Data
 
 def get_Data_Parse(html):
-    '''将html中所要的数据提取出来'''
+    '''将html中所要的数据提取出来,提取出来的数据是各项数据王中的网络url'''
     pattern = re.compile('<div.*?2px.*?>.*?class="chooserinlittle" href="(.*?)"><div>(.*?)</div>'
                          '.*?class="chooserlittle" href="(.*?)"><div>(.*?)</div>'
                          '.*?class="chooserlittle" href="(.*?)"><div>(.*?)</div>'
@@ -20,7 +20,7 @@ def get_Data_Parse(html):
     return l
 
 def tidy_data(data):
-    '''将要执行的url与数据都放在字典里面
+    '''将解析出来的url的数据进行整理
     {'0': '/award/item14pr0.html', '1': '/award/item14pr1.html', '2': '/award/item14pr2.html', '3': '/award/item14pr3.html', '4': '/award/item14pr4.html'}
     {'0': '得分王', '1': '篮板王', '2': '助攻王', '3': '盖帽王', '4': '抢断王'}'''
     d = {}
@@ -32,17 +32,15 @@ def tidy_data(data):
     print(d1)
     return d, d1
 
-def thread_get_data(visit_url):
-    '''利用线程，获取数据'''
+def thread_get_data(visit_url, visit_name):
+    '''利用线程，获取各项数据王的所有数据'''
     all_data = []
     for x in visit_url:
-        d={}
         url_end = "http://www.stat-nba.com" + visit_url["{}".format(x)]
         print(x)
         print(visit_url["{}".format(x)])
-        datas = get_html_use_data(url_end )
-        d[x] = datas
-        all_data.append(d)
+        datas = get_html_use_data(str(x), url_end, visit_name)
+        all_data.append(datas)
     return all_data
 
 
@@ -54,7 +52,7 @@ def main():
     print(data)
     visit_url, visit_name = tidy_data(data)
     print(visit_url, visit_name)
-    datas = thread_get_data(visit_url)
+    datas = thread_get_data(visit_url, visit_name)
     print(datas)
 
 if __name__ == "__main__":

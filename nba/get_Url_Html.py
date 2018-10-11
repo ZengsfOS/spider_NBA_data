@@ -2,7 +2,7 @@ import requests
 import re
 from getRequestData import get_Data
 
-def get_html_use_data(url_end):
+def get_html_use_data(y, url_end, player):
     '''获取每个赛季中最好的球员'''
 #    url = "http://www.stat-nba.com/award/item14pr4.html"
 #     url = "http://www.stat-nba.com"+ url_end
@@ -14,6 +14,7 @@ def get_html_use_data(url_end):
              '三分命中', '三分出手', '罚球', '罚球命中', '罚球出手',
              '篮板', '前场', '后场', '助攻', '抢断', '盖帽',
              '失误', '犯规', '得分']
+    D = {}
     ls = []
     for i in range(45):
         pattern = re.compile('<tr>.*?row{}.*?>(.*?)</td>.*?target.*?>(.*?)</a></td>.*?>(.*?)</td>'
@@ -53,7 +54,8 @@ def get_html_use_data(url_end):
         d['得分'] = l[23]
         ls.append(d)
     print(ls)
-    return ls
+    D[player[y]] = ls
+    return D
 
 
 
