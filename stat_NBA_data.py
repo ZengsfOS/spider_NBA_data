@@ -48,11 +48,13 @@ def thread_get_data(visit_url):
     '''利用线程，获取数据'''
     all_data = []
     for x in visit_url:
+        d={}
         url_end =  visit_url["{}".format(x)]
         print(x)
         print(visit_url["{}".format(x)])
-        datas = get_html_use_data(x,url_end )
-        all_data.append(datas)
+        datas = get_html_use_data(url_end )
+        d[x] = datas
+        all_data.append(d)
     return all_data
 
 
