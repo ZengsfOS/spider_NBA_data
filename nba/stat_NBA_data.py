@@ -2,7 +2,7 @@
 import requests
 import re
 from nba.get_Url_Html import get_html_use_data
-from getRequestData import get_Data
+from nba.getRequestData import get_Data
 
 def get_Data_Parse(html):
     '''将html中所要的数据提取出来,提取出来的数据是各项数据王中的网络url'''

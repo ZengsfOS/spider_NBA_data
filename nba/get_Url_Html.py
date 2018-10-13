@@ -1,6 +1,6 @@
 import requests
 import re
-from getRequestData import get_Data
+from nba.getRequestData import get_Data
 
 def get_html_use_data(y, url_end, player):
     '''获取每个赛季中最好的球员'''
