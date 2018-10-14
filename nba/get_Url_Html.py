@@ -58,8 +58,6 @@ def get_html_use_data(y, url_end, player):
     return D
 
 
-
-
 def main():
     data = get_html_use_data('/award/item14pr1.html')
     print(data)

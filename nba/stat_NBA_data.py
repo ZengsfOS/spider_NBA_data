@@ -4,6 +4,7 @@ import re
 from nba.get_Url_Html import get_html_use_data
 from nba.getRequestData import get_Data
 
+
 def get_Data_Parse(html):
     '''将html中所要的数据提取出来,提取出来的数据是各项数据王中的网络url'''
     pattern = re.compile('<div.*?2px.*?>.*?class="chooserinlittle" href="(.*?)"><div>(.*?)</div>'
@@ -13,11 +14,12 @@ def get_Data_Parse(html):
                          '.*?class="chooserlittle" href="(.*?)"><div>(.*?)</div>', re.S)
     print(pattern)
     result = re.search(pattern, html)
-    l = []    #将查找出来的数据存入列表中
+    l = []    # 将查找出来的数据存入列表中
     for i in result.groups():
         l.append(i)
     print(l)
     return l
+
 
 def tidy_data(data):
     '''将解析出来的url的数据进行整理
@@ -31,6 +33,7 @@ def tidy_data(data):
     print(d)
     print(d1)
     return d, d1
+
 
 def thread_get_data(visit_url, visit_name):
     '''利用线程，获取各项数据王的所有数据'''
@@ -54,6 +57,7 @@ def main():
     print(visit_url, visit_name)
     datas = thread_get_data(visit_url, visit_name)
     print(datas)
+
 
 if __name__ == "__main__":
     main()
